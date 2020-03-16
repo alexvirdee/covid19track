@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import Axios from 'axios';
 import './App.css';
 
+import PatientZero from './img/patientzero.jpg';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -74,6 +76,11 @@ export default class App extends React.Component {
           <option>Worldwide</option>
           {this.renderCountryOptions()}
         </select>
+        </div>
+        <div className="box patient-zero">
+              <h1>Patient Zero ☣️</h1>
+              <img alt="patient-zero" src={PatientZero}></img>
+              <h2 className="patient-heading">Zubin Matthews</h2>
         </div>
         <div className="row">
           <div className="flex">
