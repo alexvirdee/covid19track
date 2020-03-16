@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Axios from 'axios';
 import './App.css';
 
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.getCountryData = this.getCountryData.bind(this);
+  }
+
   state = {
     confirmed: 0,
     recovered: 0,
@@ -19,7 +25,6 @@ export default class App extends React.Component {
     const resApi = await Axios.get('https://covid19.mathdro.id/api');
     const resCountries = await Axios.get('https://covid19.mathdro.id/api/countries');
     const countries = Object.keys(resCountries.data.countries);
-
     this.setState({
       confirmed: resApi.data.confirmed.value,
       recovered: resApi.data.recovered.value,
@@ -28,11 +33,36 @@ export default class App extends React.Component {
     });
   }
 
+
+  async getCountryData(e) {
+    if (e.target.value === 'Worldwide') {
+      return this.getData();
+    }
+    try {
+      const res= await Axios.get(`https://covid19.mathdro.id/api/countries/${e.target.value}`);
+      this.setState({
+        confirmed: res.data.confirmed.value,
+        recovered: res.data.recovered.value,
+        deaths: res.data.deaths.value,
+      });
+      
+    } catch (err) {
+      if (err.response.status === 404) {
+        this.setState({
+          confirmed: "No data available",
+          recovered: "No data avilable",
+          deaths: "No data available",
+        });
+      }
+    }
+  }
+
   renderCountryOptions() {
     return this.state.countries.map((country, i) => {
     return <option key={i}>{country}</option>
     });
   }
+
 
   render() {
     return (
@@ -40,7 +70,8 @@ export default class App extends React.Component {
       <div className="container">
         <div className="heading select-country">
         <h1>COVID-19 Stats</h1>
-        <select>
+        <select onChange={this.getCountryData}>
+          <option>Worldwide</option>
           {this.renderCountryOptions()}
         </select>
         </div>
