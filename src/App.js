@@ -82,7 +82,7 @@ export default class App extends React.Component {
         <div className="box infection-info">
               <h4>Incubation Period: 2-14 days after exposure 🦠</h4>
               <img className="rotate" alt="virus" src={Virus}></img>
-              <h5 className="virus-heading">Type: Zoonotic - Transmitted between animals and peoples</h5>
+              <h5 className="virus-heading">Type: Zoonotic</h5>
     <h6 className="last-update">Last Update: <Moment fromNow>{this.state.lastUpdate}</Moment> </h6>
         </div>
         <div className="row">
