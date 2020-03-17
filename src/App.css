@@ -22,6 +22,11 @@ h1 {
 }
 
 
+.last-update {
+  color: #fff;
+}
+
+
 .container {
   margin-top: 10px;
   width: 100%;
@@ -75,6 +80,15 @@ h1 {
   border-radius: 50%;
   width: 175px;
   height: 145px;
+  filter: color;
+  -webkit-filter: grayscale(0);
+  -webkit-transition: all .8s ease-in-out;
+}
+
+.infection-info img:hover {
+  filter: gray;
+  -webkit-filter: grayscale(1);
+  -webkit-transform: scale(1.01);
 }
 
 @media screen and(min-width: 750px) {
