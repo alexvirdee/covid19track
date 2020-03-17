@@ -55,14 +55,15 @@ h1 {
   background: #E5FC00
 }
 
-.box.patient-zero {
+.box.infection-info {
   margin: 25px 50px;
   background: black;
-  color: #fff;
+  color: red;
 }
 
-.patient-heading {
-  margin-top: 25px;
+
+.virus-heading {
+  margin-top: 10px;
 }
 
 .box.deaths {
@@ -70,10 +71,10 @@ h1 {
   color: #fff;
 }
 
-.patient-zero img {
+.infection-info img {
   border-radius: 50%;
-  width: 125px;
-  height: 125px;
+  width: 175px;
+  height: 145px;
 }
 
 @media screen and(min-width: 750px) {
