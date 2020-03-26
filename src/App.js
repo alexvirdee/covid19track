@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Axios from 'axios';
 import './App.css';
 
@@ -28,7 +28,8 @@ export default class App extends React.Component {
   async getData() {
     const resApi = await Axios.get('https://covid19.mathdro.id/api');
     const resCountries = await Axios.get('https://covid19.mathdro.id/api/countries');
-    const countries = Object.keys(resCountries.data.countries);
+    const countries = Object.values(resCountries.data.countries);
+    
     this.setState({
       confirmed: resApi.data.confirmed.value,
       recovered: resApi.data.recovered.value,
@@ -63,7 +64,7 @@ export default class App extends React.Component {
 
   renderCountryOptions() {
     return this.state.countries.map((country, i) => {
-    return <option key={i}>{country}</option>
+    return <option key={i}>{country.name}</option>
     });
   }
 
@@ -80,7 +81,7 @@ export default class App extends React.Component {
         </select>
         </div>
         <div className="box infection-info">
-              <h4>Incubation Period: 2-14 days after exposure 🦠</h4>
+              <h4>Incubation Period: 2-14 days after exposure <span role="img">🦠</span></h4>
               <img className="rotate" alt="virus" src={Virus}></img>
               <h5 className="virus-heading">Type: Zoonotic</h5>
     <h6 className="last-update">Last Update: <Moment fromNow>{this.state.lastUpdate}</Moment> </h6>
